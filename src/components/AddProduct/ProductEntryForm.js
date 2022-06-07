@@ -34,6 +34,7 @@ export default function ProductEntryForm(props) {
 			date: new Date(inputDate),
 			image: inputImage,
 		};
+		const format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
 		if (
 			inputName.trim().length === 0 ||
@@ -47,7 +48,11 @@ export default function ProductEntryForm(props) {
 			});
 			return;
 		}
-		if (parseInt(inputPrice) < 1) {
+		if (
+			parseInt(inputPrice) < 1 ||
+			inputPrice.match(/[a-z]/i) ||
+			format.test(inputPrice)
+		) {
 			setError({
 				errTitle: "Invalid Price",
 				errMessage: "Please enter valid price",
