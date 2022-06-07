@@ -28,6 +28,7 @@ export default function AddProduct(props) {
 					onCancel={cancelAddingHandler}
 				/>
 			)}
+			<p>Empty input and invalid price value won't work</p>
 		</div>
 	);
 }
