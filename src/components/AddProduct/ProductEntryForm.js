@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ErrorModal from "../UI/ErrorModal";
 
-export default function ProductEntryForm(props) {
+export default function ProductEntryForm({ onNewProductSubmit, onCancel }) {
 	const [inputName, setInputName] = useState("");
 	const [inputDescription, setInputDescription] = useState("");
 	const [inputPrice, setInputPrice] = useState("");
@@ -34,8 +34,11 @@ export default function ProductEntryForm(props) {
 			date: new Date(inputDate),
 			image: inputImage,
 		};
+
+		//Prevent other keys - only numbers are required in price input 
 		const format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
+		// Input Form validation if values are empty 
 		if (
 			inputName.trim().length === 0 ||
 			inputDate.length === 0 ||
@@ -48,19 +51,23 @@ export default function ProductEntryForm(props) {
 			});
 			return;
 		}
+
+		// Input Price validation 
 		if (
 			parseInt(inputPrice) < 1 ||
+			// if any alphabet or sybmol found in input 
 			inputPrice.match(/[a-z]/i) ||
 			format.test(inputPrice)
 		) {
 			setError({
+				// Error modal messages 
 				errTitle: "Invalid Price",
 				errMessage: "Please enter valid price",
 			});
 			return;
 		}
 
-		props.onNewProductSubmit(productAllData);
+		onNewProductSubmit(productAllData);
 		setInputName("");
 		setInputDescription("");
 		setInputImage("");
@@ -72,7 +79,7 @@ export default function ProductEntryForm(props) {
 	};
 
 	return (
-		<div>
+		<div>			
 			{error && (
 				<ErrorModal
 					errorTitle={error.errTitle}
@@ -131,7 +138,7 @@ export default function ProductEntryForm(props) {
 						type="button"
 						className="cancelBtn"
 						value="Cancel"
-						onClick={props.onCancel}
+						onClick={onCancel}
 					/>
 					<input type="submit" name="submit" value="Add product" />
 				</div>

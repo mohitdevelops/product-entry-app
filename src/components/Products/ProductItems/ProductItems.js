@@ -1,14 +1,15 @@
 import ProductsList from "../ProductsList";
 
-export default function ProductItems(props) {
+export default function ProductItems({ productListItems, checkFilterYear }) {
 
-	const filterProducts = props.productListItems.filter(products =>{
-		return products.date.getFullYear().toString() === props.checkFilterYear;
-	})
+	// Filter product list as per the selected year 
+	const filterProducts = productListItems.filter((products) => {
+		return products.date.getFullYear().toString() === checkFilterYear;
+	});
 
 	return (
-		<div className="productItemsWrapper">	
-			<ProductsList productItemList={filterProducts}/>
+		<div className="productItemsWrapper">
+			<ProductsList productItemList={filterProducts} />
 		</div>
 	);
 }

@@ -37,11 +37,16 @@ export default function App() {
 
 	const [productLists, setProductList] = useState(ALL_PRODUCTS);
 
+	// New Product Add 
 	const newProductAdded = function (productLists) {
+		// List of product items in an array 
 		setProductList((demoFunc) => [productLists, ...demoFunc]);
 	};
+
+	// Default Year  
 	const [filterYear, setFilterYear] = useState("2022");
 
+	// Recieving year value from select options and set it to filterYear 
 	const filteredYear = (newFilterYear) => {
 		setFilterYear(newFilterYear);
 	};

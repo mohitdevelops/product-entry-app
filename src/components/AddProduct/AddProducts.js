@@ -1,11 +1,11 @@
 import { useState } from "react";
 import ProductEntryForm from "./ProductEntryForm";
 
-export default function AddProduct(props) {
+export default function AddProduct({ onNewProductAdded }) {
 	const [isAdding, setIsAdding] = useState(false);
 
 	const newProductDataAdded = (item) => {
-		props.onNewProductAdded(item);
+		onNewProductAdded(item);
 	};
 
 	const startAddingHandler = () => {
@@ -20,7 +20,9 @@ export default function AddProduct(props) {
 		<div>
 			<h2>Add products</h2>
 			{!isAdding && (
-				<button onClick={startAddingHandler} className="addNewBtn">Add new product</button>
+				<button onClick={startAddingHandler} className="addNewBtn">
+					Add new product
+				</button>
 			)}
 			{isAdding && (
 				<ProductEntryForm

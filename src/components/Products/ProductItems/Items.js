@@ -1,24 +1,31 @@
 import ItemDate from "./ItemDate";
 
-export default function Items(props){        
-
-    return(    
-        <div className='productItem'>
-            <div className='productImage'>
-                <img src={props.productImage} />
-            </div>
-            <div className='productDes'>
-                <div className='productTopBar'>
-                    <h3>{props.productName}</h3>
-                    <ItemDate itemDate={props.productDate}/>                                          
-                </div>
-                <div className='productBottomBar'>
-                    <p>{props.productDescription}</p>
-                    <div className='price'>
-                        <span>&#8377; </span>{props.productPrice}
-                    </div>
-                </div>
-            </div>
-        </div>          
-    );
+export default function Items({
+	productImage,
+	productName,
+	productDate,
+	productDescription,
+	productPrice,
+}) {
+	return (
+        // Product item data 
+		<div className="productItem">
+			<div className="productImage">
+				<img src={productImage} />
+			</div>
+			<div className="productDes">
+				<div className="productTopBar">
+					<h3>{productName}</h3>
+					<ItemDate itemDate={productDate} />
+				</div>
+				<div className="productBottomBar">
+					<p>{productDescription}</p>
+					<div className="price">
+						<span>&#8377; </span>
+						{productPrice}
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }
